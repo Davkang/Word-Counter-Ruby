@@ -22,7 +22,16 @@ if ARGV.size > 1
     end
   end
   # binding.pry
+  File.open("stop_words.txt", "r") do |file|
+    data = file.read
+    stop_words = data.split
 
+    stop_words.each do |stop_word|
+      if word_rank[stop_word]
+          word_rank[stop_word] = 0
+      end
+    end
+  end
 
   word_count_order = word_rank.sort_by { |key, value| -1*value }
   # binding.pry
